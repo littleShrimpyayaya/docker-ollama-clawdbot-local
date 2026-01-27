@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  clawdbot:
+    build: ./clawdbot
+    container_name: clawdbot
+    environment:
+      # 如果它需要 LLM Provider（按你实际用的）
+      # 如果用云端 LLM，需要 Key
+      OPENAI_API_KEY: ${OPENAI_API_KEY}        # 从宿主机环境变量读取
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY} # 同上
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+
+      # 强烈建议：关闭非必要外联
+      CLAWDBOT_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+    volumes:
+      - clawdbot_data:/root/.clawdbot
+      - ./workspace:/workspace
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    # ⚠️ 没有 ports → 不暴露公网
+
+volumes:
+  clawdbot_data:
+
