@@ -44,57 +44,89 @@ Dockerfile 内容：
 
 ### 1. 克隆仓库
 git clone https://github.com/littleShrimpyayaya/docker-ollama-clawdbot-local
+
 cd docker-ollama-clawdbot-local
 
+---
+
 ### 2. （可选）设置云模型 API Key
-# Openai api key
+Openai api key:
+
 export OPENAI_API_KEY=sk-xxx  
-# Anthropic api key
+
+Anthropic api key:
+
 export ANTHROPIC_API_KEY=sk-xxx  
-# Openrouter api key
+
+Openrouter api key:
+
 export OPENROUTER_API_KEY=sk-xxx  
+
+---
 
 ### 3. 构建并启动
 docker compose up -d --build
 
+---
+
 ### 4. 进入容器
 docker exec -it clawdbot bash
 
+---
+
 ### 5. ollama模型
 ## Ollama 使用
+
 查看模型：
 ollama list
 
 拉取模型示例（本地）：
+
 ollama pull gemma:2b  
 ollama pull llama3.1  
 ollama pull qwen2.5  
 
 或运行云端模型：
 登录：
+
 ollama signin （会有链接，在浏览器中打开链接登录你的账号）
+
 ollama run kimi-k2.5:cloud
+
+---
 
 ### 6. Clawdbot 使用
 使用 Ollama 启动 Clawdbot：
+
 ollama launch clawdbot （有错误可以忽略）
 
 查看状态：
+
 clawdbot status
 
 查看日志：
+
 clawdbot logs --follow
+
+---
 
 ### 7. 配置Clawdbot
 clawdbot onboard --install-daemon
+
 在所有供应商里面应该可以看到ollama，供应商就选择这个，其它的按照正常配置Clawdbot进行配置
+
+---
 
 ### 8. 后端运行Clawdbot
 nohup clawdbot gateway --port 18789 --verbose >/tmp/clawdbot.log 2>&1 &
 
+---
+
 ### 9. Pairing code配置
 以Telegram为例，执行：
+
 clawdbot pairing approve telegram [code]
+
 这个code就是Telegram上面和bot聊天框得到的Pairing code
 
 ---
