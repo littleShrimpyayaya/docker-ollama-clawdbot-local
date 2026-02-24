@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  clawdbot:
-    build: ./clawdbot
-    container_name: clawdbot
+  openclaw:
+    build: ./openclaw
+    container_name: openclaw
     environment:
       # 如果它需要 LLM Provider（按你实际用的）
       # 如果用云端 LLM，需要 Key
@@ -12,9 +12,9 @@ services:
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
 
       # 强烈建议：关闭非必要外联
-      CLAWDBOT_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+      OPENCLAW_DISABLE_NONESSENTIAL_TRAFFIC: "1"
     volumes:
-      - clawdbot_data:/root/.clawdbot
+      - openclaw_data:/root/.openclaw
       - ./workspace:/workspace
     working_dir: /workspace
     stdin_open: true
@@ -23,5 +23,5 @@ services:
     # ⚠️ 没有 ports → 不暴露公网
 
 volumes:
-  clawdbot_data:
+  openclaw_data:
 

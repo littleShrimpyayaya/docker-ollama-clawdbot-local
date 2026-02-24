@@ -1,17 +1,21 @@
-# docker-ollama-clawdbot-local
+# docker-ollama-openclaw-local
+# WARNING: openclaw renamed to OpenClaw
+# CLI: Clawdbot -> openclaw
+# Mirror/tag: v2026.1.30
+# 运行方法未变
 
-🦞 Clawdbot + Ollama 本地运行环境（Docker 版）
+🦞 openclaw + Ollama 本地运行环境（Docker 版）
 
-使用 Docker 构建一个完全本地化的 Clawdbot 运行环境，在容器内运行 Ollama 作为大模型后端，适合私有服务器 / 内网 / 本地开发。
+使用 Docker 构建一个完全本地化的 openclaw 运行环境，在容器内运行 Ollama 作为大模型后端，适合私有服务器 / 内网 / 本地开发。
 
 ---
 
 ## 特性
 
-- Clawdbot 官方 CLI
+- openclaw 官方 CLI
 - Ollama 本地大模型
 - Docker / Docker Compose 一键部署
-- Clawdbot 数据持久化
+- openclaw 数据持久化
 - 默认不暴露公网端口
 - 可选云模型（OpenAI / Anthropic / OpenRouter）
 
@@ -22,7 +26,7 @@
 .
 ├── docker-compose.yml  
 ├── README.md  
-├── clawdbot/  
+├── openclaw/  
 │   └── Dockerfile  
 └── workspace/  
 
@@ -35,7 +39,7 @@ Dockerfile 内容：
 - 基于 node:22-bullseye
 - 安装 curl / git / python / zstd 等基础依赖
 - 安装 Ollama
-- 安装 Clawdbot CLI
+- 安装 openclaw CLI
 - 默认启动 ollama serve
 
 ---
@@ -43,9 +47,9 @@ Dockerfile 内容：
 ## 快速开始
 
 ### 1. 克隆仓库
-git clone https://github.com/littleShrimpyayaya/docker-ollama-clawdbot-local
+git clone https://github.com/littleShrimpyayaya/docker-ollama-openclaw-local
 
-cd docker-ollama-clawdbot-local
+cd docker-ollama-openclaw-local
 
 ---
 
@@ -70,7 +74,7 @@ docker compose up -d --build
 ---
 
 ### 4. 进入容器
-docker exec -it clawdbot bash
+docker exec -it openclaw bash
 
 ---
 
@@ -95,37 +99,37 @@ ollama run kimi-k2.5:cloud
 
 ---
 
-### 6. Clawdbot 使用
-使用 Ollama 启动 Clawdbot：
+### 6. openclaw 使用
+使用 Ollama 启动 openclaw：
 
-ollama launch clawdbot （有错误可以忽略）
+ollama launch openclaw （有错误可以忽略）
 
 查看状态：
 
-clawdbot status
+openclaw status
 
 查看日志：
 
-clawdbot logs --follow
+openclaw logs --follow
 
 ---
 
-### 7. 配置Clawdbot
-clawdbot onboard --install-daemon
+### 7. 配置openclaw
+openclaw onboard --install-daemon
 
-在所有供应商里面应该可以看到ollama，供应商就选择这个，其它的按照正常配置Clawdbot进行配置
+在所有供应商里面应该可以看到ollama，供应商就选择这个，其它的按照正常配置openclaw进行配置
 
 ---
 
-### 8. 后端运行Clawdbot
-nohup clawdbot gateway --port 18789 --verbose >/tmp/clawdbot.log 2>&1 &
+### 8. 后端运行openclaw
+nohup openclaw gateway --port 18789 --verbose >/tmp/openclaw.log 2>&1 &
 
 ---
 
 ### 9. Pairing code配置
 以Telegram为例，执行：
 
-clawdbot pairing approve telegram [code]
+openclaw pairing approve telegram [code]
 
 这个code就是Telegram上面和bot聊天框得到的Pairing code
 
@@ -133,9 +137,9 @@ clawdbot pairing approve telegram [code]
 
 ## 数据持久化
 
-Clawdbot 数据保存在 Docker volume：
+openclaw 数据保存在 Docker volume：
 
-clawdbot_data:/root/.clawdbot
+openclaw_data:/root/.openclaw
 
 删除容器不会丢失数据。
 
@@ -146,7 +150,7 @@ clawdbot_data:/root/.clawdbot
 - 默认不暴露任何端口
 - 不依赖 Homebrew
 - 支持关闭非必要外联：
-  CLAWDBOT_DISABLE_NONESSENTIAL_TRAFFIC=1
+  openclaw_DISABLE_NONESSENTIAL_TRAFFIC=1
 
 ---
 
@@ -184,7 +188,7 @@ docker system df
 
 ## 参考
 
-Clawdbot: https://docs.clawd.bot  
+openclaw: https://docs.clawd.bot  
 Ollama: https://ollama.com  
 Docker: https://docs.docker.com/
 
